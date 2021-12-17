@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+//configuration 어노테이션 안붙여도 bean으로 등록은 됨
+//configuration 어노테이션 안붙이면 CGLIB 기술 사용하지 않음
+//하지만. 싱글톤을 보장하지 않음(싱글톤이 깨짐)
 public class AppConfig {
 
     //@Bean memberService -> new MemoryMemberRepository()

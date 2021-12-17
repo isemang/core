@@ -1,5 +1,7 @@
 package hello.core.singleton;
 
+//싱글톤 패턴을 구현하는 방법은 여러가지가 있는데,
+//이 서비스에서 구현한 방식은 객체를 미리 생성해두는 단순하고 안전한 방법을 이용했음
 public class SingletonService {
 
     //자기자신을 내부에 프라이빗으로 하나 가지고 있는다
