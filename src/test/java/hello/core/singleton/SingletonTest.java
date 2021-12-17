@@ -1,5 +1,6 @@
 package hello.core.singleton;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hello.core.AppConfig;
 import hello.core.member.Member;
 import hello.core.member.MemberService;
@@ -12,14 +13,16 @@ import static org.assertj.core.api.Assertions.*;
 
 public class SingletonTest {
 
+    ObjectMapper mapper = new ObjectMapper();
+
     @Test
     @DisplayName("스프링 없는 순수한 DI 컨테이너")
     void pureContainer() {
         AppConfig appConfig = new AppConfig();
-        //1.조회: 호출할 떄마다 객체를 생성
+        //1.조회: 호출할 때 마다 객체를 생성
         MemberService memberService1 = appConfig.memberService();
 
-        //2.조회: 호출할 떄마다 객체를 생성
+        //2.조회: 호출할 때 마다 객체를 생성
         MemberService memberService2 = appConfig.memberService();
 
         //참조값이 다른 것을 확인
@@ -39,6 +42,10 @@ public class SingletonTest {
         System.out.println("singletonService1 = " + singletonService1);
         System.out.println("singletonService2 = " + singletonService2);
 
+        //싱글톤 패턴을 이용했기 때문에, 두 객체의 참조값이 같다.
+        //처음에 자바 뜰 때 생성한 객체를 그대로 참조로 가져오는거임!
+        //isSameAs랑 isEqualTo의 차이
+        //Same : == (참조 비교) , Equal : equals() (값 비교)
         assertThat(singletonService1).isSameAs(singletonService2);
     }
 
